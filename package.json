@@ -1,20 +1,22 @@
 {
-    "name": "Zhaji",
-    "version": "0.0.1",
-    "private": true,
-    "scripts": {
-        "start": "react-native start",
-        "clean:babelrc": "find ./node_modules -name react-packager -prune -o -name '.babelrc' -print | xargs rm -f",
-        "postinstall": "npm run clean:babelrc"
-    },
-    "dependencies": {
-        "react-native": "^0.18.1",
-        "react-native-blur": "^0.7.9",
-        "react-native-htmlview": "^0.2.0",
-        "react-native-parallax-view": "git+https://github.com/jesseruder/react-native-parallax-view.git",
-        "react-native-vector-icons": "^1.0.4"
-    },
-    "devDependencies": {
-        "flow-bin": "0.17.0"
-    }
+  "name": "Zhaji",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "react-native start",
+    "clean:babelrc": "find ./node_modules -name react-packager -prune -o -name '.babelrc' -print | xargs rm -f",
+    "postinstall": "npm run clean:babelrc"
+  },
+  "dependencies": {
+    "react-native": "^0.18.1",
+    "react-native-blur": "^0.7.9",
+    "react-native-fs": "^1.2.0",
+    "react-native-htmlview": "^0.2.0",
+    "react-native-image-picker": "^0.14.3",
+    "react-native-parallax-view": "git+https://github.com/jesseruder/react-native-parallax-view.git",
+    "react-native-vector-icons": "^1.0.4"
+  },
+  "devDependencies": {
+    "flow-bin": "0.17.0"
+  }
 }

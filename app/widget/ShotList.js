@@ -10,10 +10,9 @@ var {
   View,
 } = React;
 
-var api = require("../helpers/api");
-
 var ShotCell = require("./ShotCell"),
     ShotDetails = require("./ShotDetails"),
+    Empty = require("./Empty"),
     Loading = require("./Loading");
 
 // Results should be cached keyed by the query
@@ -73,7 +72,7 @@ var ShotList = React.createClass({
       isLoadingTail: false,
     });
 
-    api.getShotsByType(query, 1)
+    this.props.getData(query, 1)
       .catch((error) => {
         LOADING[query] = false;
         resultsCache.dataForQuery[query] = undefined;
@@ -125,7 +124,7 @@ var ShotList = React.createClass({
     });
 
     var page = resultsCache.nextPageNumberForQuery[query];
-    api.getShotsByType(query, page)
+    this.props.getData(query, page)
       .catch((error) => {
         LOADING[query] = false;
         this.setState({
@@ -173,22 +172,22 @@ var ShotList = React.createClass({
     </View>;
   },
 
-  renderRow: function(shot: Object)  {
-    return (
-      <ShotCell
-        onSelect={() => this.selectShot(shot)}
-        shot={shot}/>
-    );
-  },
+  // renderRow: function(shot: Object)  {
+  //   return (
+  //     <ShotCell
+  //       onSelect={() => this.selectShot(shot)}
+  //       shot={shot}/>
+  //   );
+  // },
 
   render: function() {
-    var content = this.state.dataSource.getRowCount() === 0 ?
-      <Loading/> :
+    var content = this.state.isLoading ? <Loading /> : this.state.dataSource.getRowCount() === 0 ?
+      <Empty /> : 
       <ListView
         ref="listview"
         dataSource={this.state.dataSource}
         renderFooter={this.renderFooter}
-        renderRow={this.renderRow}
+        renderRow={this.props.renderRow}
         onEndReached={this.onEndReached}
         automaticallyAdjustContentInsets={false}
         keyboardDismissMode="on-drag"

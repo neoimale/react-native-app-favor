@@ -11,8 +11,7 @@ var {
   Dimensions
 } = React;
 
-var getImage = require("../helpers/getImage"),
-    screen = Dimensions.get('window');
+var screen = Dimensions.get('window');
 
 var ShotCell = React.createClass({
   render: function() {
@@ -21,7 +20,7 @@ var ShotCell = React.createClass({
         <TouchableHighlight onPress={this.props.onSelect}>
           <View style={styles.row}>
             <Image
-              source={getImage.shotImage(this.props.shot)}
+              source={this.props.shot}
               style={styles.cellImage}
               accessible={true}
             />

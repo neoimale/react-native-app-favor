@@ -15,23 +15,26 @@ var {
 
 var Icon = require('react-native-vector-icons/FontAwesome');
 var ShotList = require("./app/widget/ShotList");
+var Empty = require("./app/widget/Empty");
 var Strings = require('./app/locale/zh-cn');
+
+var FavorImage = require("./app/page/FavorImage");
 
 var Zhaji = React.createClass({
   getInitialState: function() {
     return {selectedTab: "default"};
   },
-  _renderContent: function(category: string, title: ?string) {
-    var page = (
-      <NavigatorIOS style={styles.wrapper}
-        initialRoute={{
-          component: ShotList,
-          title: title,
-          passProps: {filter: category}
-        }} />
-    )
-    return page;
-  },
+  // _renderContent: function(category: string, title: ?string) {
+  //   var page = (
+  //     <NavigatorIOS style={styles.wrapper}
+  //       initialRoute={{
+  //         component: ShotList,
+  //         title: title,
+  //         passProps: {filter: category}
+  //       }} />
+  //   )
+  //   return page;
+  // },
   render: function() {
     return (
       <TabBarIOS tintColor={"#ea4c89"}>
@@ -45,7 +48,7 @@ var Zhaji = React.createClass({
               selectedTab: "default",
             });
           }}>
-          {this._renderContent("default", "All")}
+          <FavorImage />
         </Icon.TabBarItem>
         <Icon.TabBarItem
           title={Strings['main-tab-text']}
@@ -57,6 +60,12 @@ var Zhaji = React.createClass({
               selectedTab: "debuts",
             });
           }}>
+          <NavigatorIOS style={styles.wrapper}
+          initialRoute={{
+            component: Empty,
+            title: Strings['main-tab-text'],
+            passProps: {text: '开发中'}
+          }} />
         </Icon.TabBarItem>
         <Icon.TabBarItem
           title={Strings['main-tab-link']}
@@ -68,6 +77,12 @@ var Zhaji = React.createClass({
               selectedTab: "animated",
             });
           }}>
+          <NavigatorIOS style={styles.wrapper}
+          initialRoute={{
+            component: Empty,
+            title: Strings['main-tab-link'],
+            passProps: {text: '开发中'}
+          }} />
         </Icon.TabBarItem>
         <Icon.TabBarItem
           title={Strings['main-tab-me']}
@@ -79,6 +94,12 @@ var Zhaji = React.createClass({
               selectedTab: "rebounds",
             });
           }}>
+          <NavigatorIOS style={styles.wrapper}
+          initialRoute={{
+            component: Empty,
+            title: Strings['main-tab-me'],
+            passProps: {text: '开发中'}
+          }} />
         </Icon.TabBarItem>
       </TabBarIOS>
     );
